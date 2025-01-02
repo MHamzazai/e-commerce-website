@@ -1,14 +1,14 @@
 import Image from "next/image";
-import React from "react";
 import MenuToggler from "./MenuToggler";
+import Link from "next/link";
 
 export default function Header() {
   return (
     <div>
-      <header className="flex bg-white border-b py-0 sm:px-6 px-0 pr-1 font-[sans-serif] h-[100px] tracking-wide relative z-50">
+      <header className="flex bg-white border-b py-0 sm:px-6 px-0 pr-1 font-[sans-serif] h-[100px] tracking-wide fixed w-full z-50">
         <div className="flex max-w-screen-xl mx-auto w-full overflow-hidden">
           <div className="flex flex-wrap items-center lg:gap-y-2 gap-2 w-full">
-            <a href="" id="top" className="overflow-hidden">
+            <Link href="/" id="top" className="overflow-hidden">
               <Image
                 src={
                   "https://marketplace.canva.com/EAF6ICBwJ7U/1/0/1600w/canva-blue-and-white-circle-retail-logo-jWnP4G7rjfI.jpg"
@@ -18,58 +18,39 @@ export default function Header() {
                 height={100}
                 className="overflow-hidden lg:hover:scale-110 transition-all duration-300"
               ></Image>
-            </a>
+            </Link>
 
             <div
               id="collapseMenu"
               className="lg:ml-6 max-lg:hidden lg:!block max-lg:before:fixed max-lg:before:bg-black max-lg:before:opacity-50 max-lg:before:inset-0 max-lg:before:z-50"
             >
               <ul className="lg:flex lg:gap-x-3 max-lg:space-y-3 max-lg:fixed max-lg:bg-white max-lg:w-1/2 max-lg:min-w-[300px] max-lg:top-0 max-lg:left-0 max-lg:p-6 max-lg:h-full max-lg:shadow-md max-lg:overflow-auto z-50">
-
                 <li className="max-lg:border-b max-lg:py-3 px-3">
-
-                  <a
-                    href="#"
+                  <Link
+                    href="/"
                     className="text-[#333] lg:hover:text-[#007bff] text-[15px] block font-semibold lg:hover:scale-105 lg:transition-all lg:duration-300 lg:hover:bg-[#f0f8ff] lg:rounded-md px-2 py-1 active:bg-[#e0f0ff]"
                   >
-                    New
-                  </a>
-
+                    Home
+                  </Link>
                 </li>
 
                 <li className="max-lg:border-b max-lg:py-3 px-3">
-
-                  <a
-                    href="#"
+                  <Link
+                    href="/watches"
                     className="text-[#333] hover:text-[#007bff] text-[15px] block font-semibold lg:hover:scale-105 lg:transition-all lg:duration-300 lg:hover:bg-[#f0f8ff] lg:rounded-md px-2 py-1 active:bg-[#e0f0ff]"
                   >
-                    Men
-                  </a>
-
+                    Watches
+                  </Link>
                 </li>
 
                 <li className="max-lg:border-b max-lg:py-3 px-3">
-
-                  <a
-                    href="#"
+                  <Link
+                    href="/shoes"
                     className="text-[#333] hover:text-[#007bff] text-[15px] block font-semibold lg:hover:scale-105 lg:transition-all lg:duration-300 lg:hover:bg-[#f0f8ff] lg:rounded-md px-2 py-1 active:bg-[#e0f0ff]"
                   >
-                    Women
-                  </a>
-
+                    Shoes
+                  </Link>
                 </li>
-
-                <li className="max-lg:border-b max-lg:py-3 px-3">
-
-                  <a
-                    href="#"
-                    className="text-[#333] hover:text-[#007bff] text-[15px] block font-semibold lg:hover:scale-105 lg:transition-all lg:duration-300 lg:hover:bg-[#f0f8ff] lg:rounded-md px-2 py-1 active:bg-[#e0f0ff]"
-                  >
-                    Kids
-                  </a>
-
-                </li>
-
               </ul>
             </div>
 
@@ -91,6 +72,7 @@ export default function Header() {
               </div>
 
               <div className="flex items-center sm:space-x-8 space-x-6">
+
                 <div className="flex flex-col items-center justify-center gap-0.5 cursor-pointer lg:hover:scale-110 lg:transition-transform lg:duration-300">
                   <div className="relative lg:hover:transition-none">
                     <svg
@@ -100,10 +82,12 @@ export default function Header() {
                     >
                       <path d="M45.5 4A18.53 18.53 0 0 0 32 9.86 18.5 18.5 0 0 0 0 22.5C0 40.92 29.71 59 31 59.71a2 2 0 0 0 2.06 0C34.29 59 64 40.92 64 22.5A18.52 18.52 0 0 0 45.5 4ZM32 55.64C26.83 52.34 4 36.92 4 22.5a14.5 14.5 0 0 1 26.36-8.33 2 2 0 0 0 3.27 0A14.5 14.5 0 0 1 60 22.5c0 14.41-22.83 29.83-28 33.14Z" />
                     </svg>
+
                     <span className="absolute left-auto -ml-1 top-0 rounded-full bg-red-500 px-1 py-0 text-xs text-white">
                       0
                     </span>
                   </div>
+
                   <span className="text-[12px] xl:text-[14px] font-semibold text-[#333] lg:hover:text-[#007bff] transition-colors duration-300 lg:hover:transition-none">
                     Wishlist
                   </span>
@@ -138,6 +122,7 @@ export default function Header() {
                 </div>
               </div>
             </div>
+
           </div>
         </div>
       </header>

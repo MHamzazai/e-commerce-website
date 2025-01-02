@@ -1,6 +1,7 @@
 import Image from "next/image";
 import React from "react";
 import { productCardProps } from "@/components/Types/ProductCardType";
+import WishlistIcon from "./Wishlist";
 
 const ProductCard: React.FC<productCardProps> = ({
   imageSrc,
@@ -11,11 +12,9 @@ const ProductCard: React.FC<productCardProps> = ({
   lineThroughPrice,
   svgStars,
 }) => {
-
-  // Helper function to render stars based on the rating
   const renderStars = (rating: number) => {
-    const fullStars = Math.floor(rating); // Number of full stars
-    const emptyStars = 5 - fullStars; // Remaining empty stars
+    const fullStars = Math.floor(rating);
+    const emptyStars = 5 - fullStars;
 
     return (
       <>
@@ -44,35 +43,33 @@ const ProductCard: React.FC<productCardProps> = ({
   };
 
   return (
-    <div className="shadow-xl lg:hover:scale-105 transition-all duration-300 rounded-xl flex flex-col overflow-hidden cursor-pointer hover:shadow-md">
-
-      <div className="w-full">
+    <div className="w-[300px] h-[450px] shadow-xl lg:hover:scale-105 transition-all duration-300 rounded-xl flex flex-col overflow-hidden cursor-pointer hover:shadow-md">
+      {/* Image container */}
+      <div className="w-full h-[60%] bg-white relative">
         <Image
           src={imageSrc}
           alt={imageAlt}
-          width={400}
-          height={400}
-          className="w-full object-contain object-center aspect-[230/307]"
+          fill
+          className="object-contain object-center"
         />
       </div>
 
-      <div className="p-2 flex-1 flex flex-col">
+      {/* Text content */}
+      <div className="p-4 flex-1 flex flex-col">
         <div className="flex-1">
-          <h5 className="text-sm sm:text-base font-bold capitalize text-gray-800 truncate">
+          <h5 className="text-sm font-bold capitalize text-gray-800 truncate">
             {productName}
           </h5>
-
-          <p className="mt-1 text-gray-500 truncate">{productDescription}</p>
-
+          <p className="mt-1 text-gray-500 text-sm truncate">
+            {productDescription}
+          </p>
           <div className="flex flex-wrap justify-between gap-2 mt-2">
             <div className="flex gap-2">
-
-              <h6 className="text-sm sm:text-base font-bold text-gray-800">
+              <h6 className="text-sm font-bold text-gray-800">
                 ${productPrice.toFixed(0)}
               </h6>
-
               {lineThroughPrice && (
-                <h6 className="text-sm sm:text-base text-gray-500 line-through">
+                <h6 className="text-sm text-gray-500 line-through">
                   ${lineThroughPrice.toFixed(1)}
                 </h6>
               )}
@@ -84,24 +81,8 @@ const ProductCard: React.FC<productCardProps> = ({
           </div>
         </div>
 
-        <div className="flex items-center gap-2 mt-4 py-2 px-2">
-          <div
-            className="bg-pink-100 hover:bg-pink-200 w-12 h-9 flex items-center justify-center rounded cursor-pointer"
-            title="Wishlist"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16px"
-              className="fill-pink-600 inline-block"
-              viewBox="0 0 64 64"
-            >
-              <path
-                d="M45.5 4A18.53 18.53 0 0 0 32 9.86 18.5 18.5 0 0 0 0 22.5C0 40.92 29.71 59 31 59.71a2 2 0 0 0 2.06 0C34.29 59 64 40.92 64 22.5A18.52 18.52 0 0 0 45.5 4ZM32 55.64C26.83 52.34 4 36.92 4 22.5a14.5 14.5 0 0 1 26.36-8.33 2 2 0 0 0 3.27 0A14.5 14.5 0 0 1 60 22.5c0 14.41-22.83 29.83-28 33.14Z"
-                data-original="#000000"
-              />
-            </svg>
-          </div>
-
+        <div className="flex items-center gap-2 mt-4 py-2">
+          <WishlistIcon />
           <button
             type="button"
             className="text-sm px-2 min-h-[36px] w-full bg-blue-600 hover:bg-blue-700 text-white tracking-wide ml-auto outline-none border-none rounded"
@@ -110,10 +91,8 @@ const ProductCard: React.FC<productCardProps> = ({
           </button>
         </div>
       </div>
-
     </div>
   );
-
 };
 
 export default ProductCard;
