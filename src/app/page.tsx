@@ -60,14 +60,14 @@ export default async function Home() {
           <div className="relative overflow-hidden h-full">
             <div className="max-w-screen-xl mx-auto py-16 px-4 sm:px-6 lg:py-32 lg:px-8 h-full flex flex-col justify-center">
               <div className="relative z-10 text-center lg:text-left">
-                <h1 className="text-4xl tracking-tight leading-10 font-extrabold text-white sm:text-5xl sm:leading-none md:text-6xl lg:text-7xl lg:w-[55%] xl:w-[75%] transition-transform duration-300 lg:hover:scale-105">
+                <h1 className="text-4xl tracking-tight leading-10 font-extrabold text-white sm:text-5xl sm:leading-none md:text-6xl lg:text-7xl lg:w-[55%] xl:w-[65%] transition-transform duration-300 lg:hover:scale-105">
                   <span className="lg:text-[82px]">Welcome</span> to
                   <br className="xl:hidden" />
                   <span className="text-indigo-300 px-5">
                     Online Shop E-commerce website.
                   </span>
                 </h1>
-                <p className="max-w-md mx-auto text-lg text-white mt-4 md:mt-6 md:max-w-3xl">
+                <p className="max-w-md mx-auto text-lg text-white mt-4 md:mt-6 md:max-w-3xl lg:mx-0 lg:w-[550px] xl:w-[650px]">
                   <span className="text-gray-300 font-bold border-b-2 pb-1 w-fit text-lg lg:text-[23px] transition-colors duration-300 lg:hover:text-gray-100">
                     Elevate Your Shopping Experience.
                   </span>
