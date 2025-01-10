@@ -2,6 +2,7 @@ import Image from "next/image";
 import React from "react";
 import { productCardProps } from "@/components/Types/ProductCardType";
 import WishlistIcon from "./Wishlist";
+import Link from "next/link";
 
 const ProductCard: React.FC<productCardProps> = ({
   imageSrc,
@@ -9,9 +10,13 @@ const ProductCard: React.FC<productCardProps> = ({
   productName,
   productDescription,
   productPrice,
-  lineThroughPrice,
+  discountPrice,
   svgStars,
+  slug,
 }) => {
+
+
+  // function for stars
   const renderStars = (rating: number) => {
     const fullStars = Math.floor(rating);
     const emptyStars = 5 - fullStars;
@@ -43,7 +48,7 @@ const ProductCard: React.FC<productCardProps> = ({
   };
 
   return (
-    <div className="w-[300px] h-[450px] shadow-xl lg:hover:scale-105 transition-all duration-300 rounded-xl flex flex-col overflow-hidden cursor-pointer hover:shadow-md">
+    <div className="w-[300px] h-[450px] shadow-xl rounded-xl flex flex-col overflow-hidden cursor-pointer    transition-all duration-500 transform-gpu lg:hover:scale-105 lg:hover:shadow-md will-change-transform">
       {/* Image container */}
       <div className="w-full h-[60%] bg-white relative">
         <Image
@@ -57,10 +62,10 @@ const ProductCard: React.FC<productCardProps> = ({
       {/* Text content */}
       <div className="p-4 flex-1 flex flex-col">
         <div className="flex-1">
-          <h5 className="text-sm font-bold capitalize text-gray-800 truncate">
+          <h5 className="text-sm font-bold capitalize text-gray-800 truncate tracking-wide">
             {productName}
           </h5>
-          <p className="mt-1 text-gray-500 text-sm truncate">
+          <p className="text-sm text-gray-500 font-[400] tracking-wide">
             {productDescription}
           </p>
           <div className="flex flex-wrap justify-between gap-2 mt-2">
@@ -68,9 +73,9 @@ const ProductCard: React.FC<productCardProps> = ({
               <h6 className="text-sm font-bold text-gray-800">
                 ${productPrice.toFixed(0)}
               </h6>
-              {lineThroughPrice && (
+              {discountPrice && (
                 <h6 className="text-sm text-gray-500 line-through">
-                  ${lineThroughPrice.toFixed(1)}
+                  ${discountPrice.toFixed(1)}
                 </h6>
               )}
             </div>
@@ -83,12 +88,13 @@ const ProductCard: React.FC<productCardProps> = ({
 
         <div className="flex items-center gap-2 mt-4 py-2">
           <WishlistIcon />
-          <button
-            type="button"
-            className="text-sm px-2 min-h-[36px] w-full bg-blue-600 hover:bg-blue-700 text-white tracking-wide ml-auto outline-none border-none rounded"
+          <Link
+            prefetch={true}
+            href={`/productDetails/${slug}`}
+            className="text-sm px-2 min-h-[36px] w-full bg-blue-600 hover:bg-blue-700 text-white tracking-wide ml-auto outline-none border-none rounded flex justify-center items-center"
           >
             View Details
-          </button>
+          </Link>
         </div>
       </div>
     </div>

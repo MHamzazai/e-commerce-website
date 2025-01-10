@@ -8,7 +8,7 @@ export default function Header() {
       <header className="flex bg-white border-b py-0 sm:px-6 px-0 pr-1 font-[sans-serif] h-[100px] tracking-wide fixed w-full z-50">
         <div className="flex max-w-screen-xl mx-auto w-full overflow-hidden">
           <div className="flex flex-wrap items-center lg:gap-y-2 gap-2 w-full">
-            <Link href="/" id="top" className="overflow-hidden">
+            <Link href="/" id="top" prefetch={true} className="overflow-hidden">
               <Image
                 src={
                   "https://marketplace.canva.com/EAF6ICBwJ7U/1/0/1600w/canva-blue-and-white-circle-retail-logo-jWnP4G7rjfI.jpg"
@@ -28,6 +28,7 @@ export default function Header() {
                 <li className="max-lg:border-b max-lg:py-3 px-3">
                   <Link
                     href="/"
+                    prefetch={true}
                     className="text-[#333] lg:hover:text-[#007bff] text-[15px] block font-semibold lg:hover:scale-105 lg:transition-all lg:duration-300 lg:hover:bg-[#f0f8ff] lg:rounded-md px-2 py-1 active:bg-[#e0f0ff]"
                   >
                     Home
@@ -37,6 +38,7 @@ export default function Header() {
                 <li className="max-lg:border-b max-lg:py-3 px-3">
                   <Link
                     href="/watches"
+                    prefetch={true}
                     className="text-[#333] hover:text-[#007bff] text-[15px] block font-semibold lg:hover:scale-105 lg:transition-all lg:duration-300 lg:hover:bg-[#f0f8ff] lg:rounded-md px-2 py-1 active:bg-[#e0f0ff]"
                   >
                     Watches
@@ -46,6 +48,7 @@ export default function Header() {
                 <li className="max-lg:border-b max-lg:py-3 px-3">
                   <Link
                     href="/shoes"
+                    prefetch={true}
                     className="text-[#333] hover:text-[#007bff] text-[15px] block font-semibold lg:hover:scale-105 lg:transition-all lg:duration-300 lg:hover:bg-[#f0f8ff] lg:rounded-md px-2 py-1 active:bg-[#e0f0ff]"
                   >
                     Shoes

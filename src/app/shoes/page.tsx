@@ -13,29 +13,40 @@ const font1 = Poppins({
 });
 
 export default async function Shoes() {
+
   // fetch the products data from the API route for our mens shoes section
   const response1 = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/products?category=mensShoes`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/products?section=Mens-shoes-section`,
     {
       cache: "no-store", // Ensure fresh data on every request
     }
   );
 
-  // fetch the products data from the API route for our mens shoes section
+  // fetch the products data from the API route for our womens shoes section
   const response2 = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/products?category=womensShoes`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/products?section=Womens-shoes-section`,
     {
       cache: "no-store", // Ensure fresh data on every request
     }
   );
 
-  // fetch the products data from the API route for our mens shoes section
+  // fetch the products data from the API route for our shoes sale section
   const response3 = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/products?category=salesShoes`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/products?section=Shoes-sale-section`,
     {
       cache: "no-store", // Ensure fresh data on every request
     }
   );
+
+  // checking if the data fetch successfully
+  if (!response1.ok && response2.ok && response3.ok) {
+    console.error("Failed to fetch products.");
+    return (
+      <div className="text-center text-red-500 mt-10">
+        Failed to load products. Please try again later.
+      </div>
+    );
+  }
 
   // converting the products data in json
   const products1 = await response1.json();
@@ -60,11 +71,11 @@ export default async function Shoes() {
               <ProductCard
                 key={index}
                 imageAlt={item.imageAlt}
+                slug={item.slug}
                 imageSrc={item.imageSrc}
                 productDescription={item.productDescription}
                 productName={item.productName}
                 productPrice={item.productPrice}
-                lineThroughPrice={item.lineThroughPrice}
                 svgStars={item.svgStars}
               />
             ))}
@@ -72,7 +83,7 @@ export default async function Shoes() {
         </div>
       </section>
 
-      {/* mens shoes section */}
+      {/* womens shoes section */}
       <section>
         <div className="font-sans p-4 mx-auto lg:max-w-6xl md:max-w-3xl">
           <div className="flex justify-center items-center my-10">
@@ -92,8 +103,8 @@ export default async function Shoes() {
                 productDescription={item.productDescription}
                 productName={item.productName}
                 productPrice={item.productPrice}
-                lineThroughPrice={item.lineThroughPrice}
                 svgStars={item.svgStars}
+                slug={item.slug}
               />
             ))}
           </div>
@@ -131,7 +142,7 @@ export default async function Shoes() {
         </div>
       </section>
 
-      {/* mens shoes section */}
+      {/* shoes sale section */}
       <section>
         <div className="font-sans p-4 mx-auto lg:max-w-6xl md:max-w-3xl">
           <div className="flex justify-center items-center my-10">
@@ -147,17 +158,19 @@ export default async function Shoes() {
               <ProductCard
                 key={index}
                 imageAlt={item.imageAlt}
+                slug={item.slug}
                 imageSrc={item.imageSrc}
                 productDescription={item.productDescription}
                 productName={item.productName}
                 productPrice={item.productPrice}
-                lineThroughPrice={item.lineThroughPrice}
+                discountPrice={item.discountPrice}
                 svgStars={item.svgStars}
               />
             ))}
           </div>
         </div>
-      </section>
+      </section> 
+
     </div>
   );
 }

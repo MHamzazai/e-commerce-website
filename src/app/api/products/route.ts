@@ -1,46 +1,37 @@
-// app/api/products/route.ts
 import { NextResponse } from "next/server";
-import { productData } from "@/../../Data/productData"; // Adjust the import path as needed
+import GetSectionQuery from "@/sanity/sanity.query";
 
-// Handle the GET method to return product data
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
-  const category = searchParams.get("category");
+  const section = searchParams.get("section");
 
-  if (!category) {
-    // If the category query parameter is missing
+  // Type the section parameter as a string and ensure it's not empty
+  if (!section || typeof section !== "string") {
     return NextResponse.json(
-      { errorMessage: "Category is missing in the query parameters." },
+      { errorMessage: "Section parameter is required and must be a string." },
       { status: 400 }
     );
   }
 
-  // Check if the requested category exists in productData
-  const categoryData = productData[category as keyof typeof productData];
+  try {
+    // Fetch the section data using the typed function
+    const sectionData = await GetSectionQuery(section);
 
-  if (!categoryData || categoryData.length === 0) {
-    // If the category doesn't exist or has no products
+    if (!sectionData || sectionData.length === 0) {
+      return NextResponse.json(
+        { errorMessage: `No data found for section: ${section}` },
+        { status: 404 }
+      );
+    }
+
+    return NextResponse.json(sectionData, { status: 200 });
+  } catch (error) {
     return NextResponse.json(
-      { errorMessage: `No products found for the category: ${category}` },
-      { status: 404 }
+      {
+        errorMessage: "Failed to fetch data from Sanity.", error,
+
+      },
+      { status: 500 }
     );
   }
-
-  // Return the products for the specified category
-  return NextResponse.json(categoryData, { status: 200 });
-}
-
-// Handle unsupported HTTP methods
-export async function OPTIONS() {
-  return NextResponse.json(
-    { errorMessage: "Method Not Allowed" },
-    { status: 405 }
-  );
-}
-
-export async function POST() {
-  return NextResponse.json(
-    { errorMessage: "POST method not implemented" },
-    { status: 405 }
-  );
 }

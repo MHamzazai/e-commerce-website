@@ -14,7 +14,7 @@ const font1 = Poppins({
 export default async function Watches() {
   // Fetch product data from the API route for our mens watches section
   const response1 = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/products?category=mensWatches`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/products?section=Mens-watches-section`,
     {
       cache: "no-store", // Ensure fresh data on every request
     }
@@ -22,7 +22,7 @@ export default async function Watches() {
 
   // Fetch product data from the API route for our womens watches section
   const response2 = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/products?category=womensWatches`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/products?section=Womens-watches-section`,
     {
       cache: "no-store", // Ensure fresh data on every request
     }
@@ -30,7 +30,7 @@ export default async function Watches() {
 
   // Fetch product data from the API route for our womens watches section
   const response3 = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/products?category=salesWatches`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/products?section=Watches-Sale-Section`,
     {
       cache: "no-store", // Ensure fresh data on every request
     }
@@ -50,6 +50,7 @@ export default async function Watches() {
   const products1: productCardProps[] = await response1.json();
   const products2: productCardProps[] = await response2.json();
   const products3: productCardProps[] = await response3.json();
+
   return (
     <div className="min-h-screen w-full pt-[100px]">
       {/* mens watches section */}
@@ -72,8 +73,8 @@ export default async function Watches() {
                 productDescription={item.productDescription}
                 productName={item.productName}
                 productPrice={item.productPrice}
-                lineThroughPrice={item.lineThroughPrice}
                 svgStars={item.svgStars}
+                slug={item.slug}
               />
             ))}
           </div>
@@ -96,11 +97,11 @@ export default async function Watches() {
               <ProductCard
                 key={index}
                 imageAlt={item.imageAlt}
+                slug={item.slug}
                 imageSrc={item.imageSrc}
                 productDescription={item.productDescription}
                 productName={item.productName}
                 productPrice={item.productPrice}
-                lineThroughPrice={item.lineThroughPrice}
                 svgStars={item.svgStars}
               />
             ))}
@@ -157,8 +158,9 @@ export default async function Watches() {
                 productDescription={item.productDescription}
                 productName={item.productName}
                 productPrice={item.productPrice}
-                lineThroughPrice={item.lineThroughPrice}
+                discountPrice={item.discountPrice}
                 svgStars={item.svgStars}
+                slug={item.slug}
               />
             ))}
           </div>

@@ -15,14 +15,14 @@ const font1 = Poppins({
 export default async function Home() {
   // Fetch product data from the API route for our best section
   const response1 = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/products?category=ourBestSection`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/products?section=Our-Best-Section-Products`,
     {
       cache: "no-store", // Ensure fresh data on every request
     }
   );
   // Fetch product data from the API route for sale section
   const response2 = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/products?category=saleSection`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/products?section=Sale-Section-Products`,
     {
       cache: "no-store", // Ensure fresh data on every request
     }
@@ -30,14 +30,14 @@ export default async function Home() {
 
   // Fetch product data from the API route for shalwarKamezSection section
   const response3 = await fetch(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/products?category=shalwarKamezSection`,
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/products?section=Shalwarkameez-Section`,
     {
       cache: "no-store", // Ensure fresh data on every request
     }
   );
 
   if (!response1.ok && response2.ok && response3.ok) {
-    console.error("Failed to fetch products.");
+    console.error("Failed to fetch products.From Sanity (CMS).");
     return (
       <div className="text-center text-red-500 mt-10">
         Failed to load products. Please try again later.
@@ -54,7 +54,7 @@ export default async function Home() {
       {/* Hero Section */}
       <section>
         <div
-          className="bg-gradient-to-b lg:bg-gradient-to-r from-indigo-600 via-gray-900 to-purple-400 font-[sans-serif] min-h-[calc(100vh-100px)] flex flex-col justify-center border-b-2 border-blue-500 shadow-xl"
+          className="bg-gradient-to-tr lg:bg-gradient-to-bl from-indigo-600 via-gray-600 to-purple-400 font-[sans-serif] min-h-[calc(100vh-100px)] flex flex-col justify-center border-b-2 border-blue-500 shadow-xl"
           style={{ minHeight: "calc(100vh - 100px)" }}
         >
           <div className="relative overflow-hidden h-full">
@@ -119,8 +119,8 @@ export default async function Home() {
                 productDescription={item.productDescription}
                 productName={item.productName}
                 productPrice={item.productPrice}
-                lineThroughPrice={item.lineThroughPrice}
                 svgStars={item.svgStars}
+                slug={item.slug}
               />
             ))}
           </div>
@@ -178,8 +178,9 @@ export default async function Home() {
                 productDescription={item.productDescription}
                 productName={item.productName}
                 productPrice={item.productPrice}
-                lineThroughPrice={item.lineThroughPrice}
+                discountPrice={item.discountPrice}
                 svgStars={item.svgStars}
+                slug={item.slug}
               />
             ))}
           </div>
@@ -188,6 +189,7 @@ export default async function Home() {
 
       {/* mens shalwarKamezSection section */}
       <section>
+
         <div className="font-sans p-4 mx-auto lg:max-w-6xl md:max-w-3xl">
           <div className="flex justify-center items-center my-10">
             <h1
@@ -206,8 +208,8 @@ export default async function Home() {
                 productDescription={item.productDescription}
                 productName={item.productName}
                 productPrice={item.productPrice}
-                lineThroughPrice={item.lineThroughPrice}
                 svgStars={item.svgStars}
+                slug={item.slug}
               />
             ))}
           </div>

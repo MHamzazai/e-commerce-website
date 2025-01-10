@@ -5,8 +5,9 @@ export type productCardProps = {
   productName: string;
   productDescription: string;
   productPrice: number;
-  lineThroughPrice?: number;
+  discountPrice?: number;
   svgStars: number;
+  slug: string;
 };
 export type productSectionsTypes = {
   ourBestSection: productCardProps[];
